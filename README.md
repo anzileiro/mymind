@@ -1,1 +1,1 @@
-# myminds-webapi
+# MyMinds - API v1.0

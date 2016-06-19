@@ -1,14 +1,26 @@
 {
   "name": "mymind-webapi",
   "version": "1.0.0",
-  "description": "web api for mymind",
+  "description": "API for MyMind",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anzileiro/myminds-webapi.git"
   },
   "author": "Anderson L. Ribeiro Anzileiro <anderson.anzileiro@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anzileiro/myminds-webapi/issues"
+  },
+  "homepage": "https://github.com/anzileiro/myminds-webapi#myminds-webapi",
   "dependencies": {
-    "hapi": "^13.4.1"
+    "bookshelf": "0.9.5",
+    "hapi": "13.4.1",
+    "knex": "0.11.7",
+    "pg": "5.1.0"
   }
 }
