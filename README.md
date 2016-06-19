@@ -1,1 +1,1 @@
-# mymind
+# myminds
