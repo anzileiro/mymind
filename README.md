@@ -1,1 +1,1 @@
-# myminds
+# myminds-webapi
