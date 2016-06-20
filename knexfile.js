@@ -1,15 +1,15 @@
 'use strict'
 
-const URL_CONN = `${process.env.DATABASE_URL}?ssl=true`
+const url = `${process.env.DATABASE_URL}?ssl=true`
 
 module.exports = {
   development: {
     client: 'pg',
-    connection: URL_CONN
+    connection: url
   },
   production: {
     client: 'pg',
-    connection: URL_CONN,
+    connection: url,
     pool: {
       min: 2,
       max: 10
