@@ -22,9 +22,17 @@ let routes = [
             Model.forge(register)
                  .save()
                  .then((note) => {
-                    return reply(Http.created(null, note)) 
+                    return reply({
+                        code: 201,
+                        message: 'Created',
+                        data: note
+                    }) 
                 }, (err) => {
-                    return reply(Http.internalServerError(null, err))
+                    return reply({
+                        code: 500,
+                        message: 'InternalServerError',
+                        data: err
+                    })
                 })
                  .catch((err) => {
                      throw err
@@ -52,7 +60,7 @@ let routes = [
             .fetch()
             .then((note) => { 
                 if (note) {
-                    return reply(Http.ok(null, note))
+                    return reply(Http.ok('registro encontrado', note))
                 }
                 return reply('not found')
             }, (err) => {
