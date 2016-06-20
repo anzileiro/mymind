@@ -39,3 +39,5 @@ jspm_packages
 # VS Code configuration
 .vscode
 typings
+.eslintrc.json
+jsconfig.json
