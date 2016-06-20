@@ -1,22 +1,15 @@
 'use strict'
 
-const   Hapi        = require('hapi')
-,       Server      = new Hapi.Server()
+const   Hapi                = require('hapi')
+,       Server              = new Hapi.Server()
+,       NoteController      = require('./controllers/note.js')
 
 Server.connection({
-    host: 'localhost',
-    port: 9000
+    host: process.env.APP_HOST,
+    port: process.env.APP_PORT
 })
 
-Server.route({
-    method: 'GET',
-    path: '/v1/crowley',
-    handler: (request, reply) => {
-        reply({
-            crowley : 'See what I see. Feel what I feel. And lets go take a howl at that moon.'
-        })
-    }
-})
+Server.route(NoteController.routes)
 
 Server.start((err) => {
     if (err) {
