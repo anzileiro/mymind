@@ -31,6 +31,10 @@ exports.ok = (message, data) => {
     return new Http(code.ok, status.ok, message, data)
 }
 
+exports.notFound = (message) => {
+    return new Http(code.notFound, status.notFound, message)
+}
+
 exports.internalServerError = (message, data) => {
     return new Http(code.internalServerError, status.internalServerError, message, data)
 }
