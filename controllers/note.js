@@ -22,9 +22,9 @@ let routes = [
             Model.forge(register)
                  .save()
                  .then((note) => {
-                    return reply(Http.created('new register added', note)) 
+                    return reply(Http.created('successfully created', note)).code(201)
                 }, (err) => {
-                    return reply(Http.internalServerError('error ocurred', err))
+                    return reply(Http.internalServerError('an error has occurred', err)).code(500)
                 })
                  .catch((err) => {
                      throw err
@@ -52,11 +52,11 @@ let routes = [
             .fetch()
             .then((note) => { 
                 if (note) {
-                    return reply(Http.ok('select ok', note))
+                    return reply(Http.ok('successfully', note)).code(200)
                 }
-                return reply(Http.notFound('not found'))
+                return reply(Http.notFound('resource not found')).code(404)
             }, (err) => {
-                return reply(Http.internalServerError(null, err))
+                return reply(Http.internalServerError('an error has occurred', err)).code(500)
             })
             .catch((err) => {
                 throw err

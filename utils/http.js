@@ -1,6 +1,6 @@
 'use strict'
 
-const code = {
+const codes = {
     ok: 200,
     created: 201,
     notFound: 404,
@@ -11,30 +11,31 @@ const status = {
     ok: 'Ok',
     created: 'Created',
     notFound: 'NotFound',
-    internalServerError: 'InternalServerError'   
+    internalServerError: 'InternalServerError'
 }
 
 class Http {
     constructor(code, status, message, data) {
         this.code = code
         this.status = status
-        this.message = message
-        this.data = data
+        this.message = message || undefined
+        this.data = data || undefined
     }
 }
 
-exports.created = (message, data) => {
-    return new Http(code.created, status.created, message, data)
-}
-
 exports.ok = (message, data) => {
-    return new Http(code.ok, status.ok, message, data)
+    return new Http(codes.ok, status.ok, message, data)
 }
 
-exports.notFound = (message) => {
-    return new Http(code.notFound, status.notFound, message)
+exports.created = (message, data) => {
+    return new Http(codes.created, status.created, message, data)
+}
+
+exports.notFound = (message, data) => {
+    return new Http(codes.notFound, status.notFound, message, data)
 }
 
 exports.internalServerError = (message, data) => {
-    return new Http(code.internalServerError, status.internalServerError, message, data)
+    return new Http(codes.internalServerError, status.internalServerError, message, data)
 }
+
