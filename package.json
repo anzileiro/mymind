@@ -9,7 +9,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "knex": "knex --knexfile ./knexfile.js"
+    "knex": "knex --knexfile ./utils/knexfile.js"
   },
   "repository": {
     "type": "git",

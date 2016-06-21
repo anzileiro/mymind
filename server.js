@@ -15,7 +15,6 @@ Server.start((err) => {
     if (err) {
         throw err
     }
-
     console.log(`Server running at: ${ Server.info.uri } on ${ process.env.NODE_ENV } mode`)
 })
 
