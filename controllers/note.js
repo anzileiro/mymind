@@ -1,16 +1,12 @@
 'use strict'
 
-const Uuid      = require('uuid-v4')
-,     Md5       = require('md5')
-,     Joi       = require('joi')
-,     Http      = require('../utils/http.js')
-,     Model     = require('../models/note.js')
+const Http    = require('../utils/http.js')
+,     Model   = require('../models/note.js')
+,     Md5     = require('md5')
+,     Uuid    = require('uuid-v4')
 
-let routes = [
-    {
-        method: 'POST',
-        path: '/v1/note',
-        handler: (request, reply) => {
+let controller = {
+    create: (request, reply) => {
 
             let register = {
                 hash_edit: request.payload.hash,
@@ -29,42 +25,28 @@ let routes = [
                  .catch((err) => {
                      throw err
                  })
+                 
         },
-        config: {
-            validate: {
-                payload: {
-                    hash: Joi.string().required().min(10).max(10),
-                    note: Joi.string().max(10000),
-                    password: Joi.string().min(6).max(32)
-                    
-                }
-            }
-        }
-    },
-    {
-        method: 'GET',
-        path: '/v1/note/{hash}',
-        handler: (request, reply) => {
+
+        getByHash: (request, reply) => {
 
             Model.forge({ 
-                hash_edit: encodeURIComponent(request.params.hash) 
-            })
-            .fetch()
-            .then((note) => { 
-                if (note) {
-                    return reply(Http.ok('successfully', note)).code(200)
-                }
-                return reply(Http.notFound('resource not found')).code(404)
-            }, (err) => {
-                return reply(Http.internalServerError('an error has occurred', err)).code(500)
-            })
-            .catch((err) => {
-                throw err
-            })
-        }
-    }
-]
+                    hash_edit: encodeURIComponent(request.params.hash) 
+                })
+                .fetch()
+                .then((note) => { 
+                    if (note) {
+                        return reply(Http.ok('successfully', note)).code(200)
+                    }
+                    return reply(Http.notFound('resource not found')).code(404)
+                }, (err) => {
+                    return reply(Http.internalServerError('an error has occurred', err)).code(500)
+                })
+                .catch((err) => {
+                    throw err
+                })
 
-module.exports = {
-    routes: routes
+        }
 }
+
+module.exports = controller

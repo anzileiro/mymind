@@ -2,14 +2,14 @@
 
 const   Hapi                = require('hapi')
 ,       Server              = new Hapi.Server()
-,       NoteController      = require('./controllers/note.js')
+,       NoteRoute           = require('./routes/note.js')
 
 Server.connection({
     host: process.env.APP_HOST,
     port: process.env.APP_PORT
 })
 
-Server.route(NoteController.routes)
+Server.route(NoteRoute)
 
 Server.start((err) => {
     if (err) {
