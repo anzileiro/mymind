@@ -5,8 +5,8 @@ const   Hapi                = require('hapi')
 ,       NoteRoute           = require('./routes/note.js')
 
 Server.connection({
-    host: process.env.APP_HOST,
-    port: process.env.APP_PORT
+    host: process.env.WEBAPI_HOST,
+    port: process.env.WEBAPI_PORT
 })
 
 Server.route(NoteRoute)
