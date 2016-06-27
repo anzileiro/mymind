@@ -6,7 +6,12 @@ const   Hapi                = require('hapi')
 
 Server.connection({
     host: process.env.WEBAPI_HOST,
-    port: process.env.WEBAPI_PORT
+    port: process.env.WEBAPI_PORT,
+    routes: {
+        cors: {
+            origin: ['*']
+        }
+    }
 })
 
 Server.route(NoteRoute)
