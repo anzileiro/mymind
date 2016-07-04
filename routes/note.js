@@ -1,7 +1,8 @@
 'use strict'
 
-const Joi           = require('joi')
-,     Controller    = require('../controllers/note.js')
+const Joi               = require('joi')
+,     Controller        = require('../controllers/note.js')
+,     HashController    = require('../controllers/hash.js')
 
 let routes = [
     {
@@ -11,18 +12,37 @@ let routes = [
         config: {
             validate: {
                 payload: {
-                    hash: Joi.string().required().min(10).max(10),
-                    note: Joi.string().max(10000),
-                    password: Joi.string().min(6).max(32)
-                    
+                    note: Joi.string().max(100000)   
                 }
             }
         }
     },
     {
+        method: 'PUT',
+        path: '/v1/note/{hash}',
+        handler: Controller.updateByHash,
+        config: {
+            validate: {
+                payload: {
+                    note: Joi.string().max(100000)
+                }
+            }
+        }
+    },
+    {
+        method: 'DELETE',
+        path: '/v1/note/{hash}',
+        handler: Controller.deleteByHash
+    },
+    {
         method: 'GET',
         path: '/v1/note/{hash}',
         handler: Controller.getByHash
+    },
+    {
+        method: 'GET',
+        path: '/v1/note/validate/{hash?}',
+        handler: HashController.validate
     }
 ]
 
