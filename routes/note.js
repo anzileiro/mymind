@@ -36,8 +36,8 @@ let routes = [
     },
     {
         method: 'GET',
-        path: '/v1/note/{hash}',
-        handler: Controller.getByHash
+        path: '/v1/MarcusEhViadao/{hash}',
+        handler: Controller.getById
     },
     {
         method: 'GET',

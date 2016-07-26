@@ -80,7 +80,7 @@ let controller = {
                  return reply(Http.internalServerError('an error has occurred', err)).code(500) 
              })
     },
-    getByHash: (request, reply) => {
+    getById: (request, reply) => {
         Model.forge({ hash: request.params.hash })
              .fetch()
              .then((register) => {
